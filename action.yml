@@ -38,6 +38,9 @@ inputs:
     description: Closing comment (for other than DocToc)
     required: false
     default: '<!-- tocstop '
+  ENTIRE:
+    description: Enables doctoc --entire flag
+    required: false
 
   COMMIT_MESSAGE:
     description: Commit message.
