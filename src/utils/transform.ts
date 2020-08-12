@@ -2,7 +2,7 @@ import transform, {start, end} from 'doctoc/lib/transform';
 import updateSection from 'update-section';
 import {readFileSync} from 'fs';
 import {Utils} from '@technote-space/github-action-helper';
-import {isNoTitle, wrapTitle, wrapToc, getEntryPrefix, getMaxHeaderLevel, getArrayInput} from './misc';
+import {isNoTitle, wrapTitle, wrapToc, getEntryPrefix, getMaxHeaderLevel, getArrayInput, getEntireFlag} from './misc';
 import {OPENING_COMMENT, CLOSING_COMMENT} from '../constant';
 
 const matchesStart = (line: string): boolean => Utils.getRegExp(OPENING_COMMENT).test(line);
@@ -15,7 +15,7 @@ export const normalizeMarkerComment = (contents: string): string => {
 
 export const transformWithWrap = (path: string, title: string): { transformed: boolean; path: string; data: string } => {
   const content = normalizeMarkerComment(readFileSync(path, 'utf8'));
-  const {toc}   = transform(content, undefined, getMaxHeaderLevel(), wrapTitle(title), isNoTitle(title), getEntryPrefix());
+  const {toc}   = transform(content, undefined, getMaxHeaderLevel(), wrapTitle(title), isNoTitle(title), getEntryPrefix(), getEntireFlag());
 
   // transformed is not working
   // https://github.com/thlorenz/doctoc/pull/169

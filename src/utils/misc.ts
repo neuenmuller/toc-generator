@@ -30,6 +30,8 @@ export const getMaxHeaderLevel = (): number | undefined => /^\d+$/.test(getInput
 
 export const getEntryPrefix = (): string => getInput('ENTRY_PREFIX');
 
+export const getEntireFlag = (): boolean => getInput('ENTIRE').trim().toLowerCase() === 'true';
+
 const getExecuteCommands = (logger: Logger): Array<ExecuteTask> => {
   const paths = getTargetPaths();
   if (!paths.length) {
